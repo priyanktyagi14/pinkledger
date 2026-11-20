@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>PinkLedger — Your Personal Money Playground</title>
+    
+    <!-- PWA Manifest & App Info -->
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" type="image/svg+xml" href="/icons/icon.svg" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192x192.png" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+
+    <!-- Theme & Mobile App Appearance -->
+    <meta name="theme-color" content="#0a0512" id="theme-color-meta" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="PinkLedger" />
+    <meta name="application-name" content="PinkLedger" />
+    <meta name="msapplication-TileColor" content="#0a0512" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- Google Fonts for aesthetic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <style>
+      /* Splash & Safe Area CSS */
+      :root {
+        --sat: env(safe-area-inset-top, 0px);
+        --sab: env(safe-area-inset-bottom, 0px);
+        --sal: env(safe-area-inset-left, 0px);
+        --sar: env(safe-area-inset-right, 0px);
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overscroll-behavior-y: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      /* Splash screen animation */
+      @keyframes pulseGlow {
+        0%, 100% {
+          transform: scale(1);
+          opacity: 0.8;
+          filter: drop-shadow(0 0 25px rgba(236, 72, 153, 0.4));
+        }
+        50% {
+          transform: scale(1.05);
+          opacity: 1;
+          filter: drop-shadow(0 0 40px rgba(236, 72, 153, 0.7));
+        }
+      }
+
+      @keyframes shimmerBar {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(100%); }
+      }
+
+      .splash-container {
+        position: fixed;
+        inset: 0;
+        background: radial-gradient(circle at 50% 40%, #1e0e38 0%, #0a0512 85%, #05020a 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+        color: white;
+        text-align: center;
+        padding: 24px;
+        box-sizing: border-box;
+      }
+
+      .splash-logo {
+        width: 96px;
+        height: 96px;
+        border-radius: 26px;
+        animation: pulseGlow 2.5s infinite ease-in-out;
+        margin-bottom: 24px;
+      }
+
+      .splash-title {
+        font-size: 28px;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        margin: 0 0 8px 0;
+        color: #ffffff;
+      }
+
+      .splash-title span {
+        color: #ec4899;
+      }
+
+      .splash-tagline {
+        font-size: 13px;
+        color: #f472b6;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        margin: 0 0 28px 0;
+        opacity: 0.9;
+      }
+
+      .splash-progress-track {
+        width: 140px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 999px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .splash-progress-fill {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, #ec4899, #a855f7, #ec4899);
+        animation: shimmerBar 1.5s infinite linear;
+      }
+    </style>
+  </head>
+  <body class="bg-[#0a0512] text-slate-100 antialiased selection:bg-pink-500 selection:text-white">
+    <div id="root">
+      <!-- Branded Native Application Splash Screen (Replaced once React loads) -->
+      <div class="splash-container">
+        <img src="/icons/icon-192x192.png" alt="PinkLedger" class="splash-logo" />
+        <h1 class="splash-title">Pink<span>Ledger</span></h1>
+        <p class="splash-tagline">Your personal money playground ✨</p>
+        <div class="splash-progress-track">
+          <div class="splash-progress-fill"></div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
